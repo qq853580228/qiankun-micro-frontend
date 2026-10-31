@@ -7,9 +7,9 @@
 
 | 应用 | 技术栈 | UI 框架 | 角色 | 端口 | 独立访问 |
 |---|---|---|---|---|---|
-| main-vue | Vue 3 + TS + vue-router | ant-design-vue 4 | 基座：统一登录 / RBAC / 侧边菜单 / 消息通知中心 / EventBus 中继 | 5173 | — |
-| vue-sub | Vue 3 + TS + vue-router | ant-design-vue 4 | 商品管理：增删改查 / 库存 / 上下架 | 5174 | http://localhost:5174/vue-sub/ |
-| react-sub | React 19 + TSX + react-router-dom | antd 5 | 订单管理：列表 / 状态流转 / 新建 / 退款 | 5175 | http://localhost:5175/react-sub/ |
+| main-vue | Vue 3 + TS + vue-router | ant-design-vue 4 | 基座：统一登录 / RBAC / 侧边菜单 / 消息通知中心 / EventBus 中继 | 5173 | http://localhost:5173  |
+| vue-sub | Vue 3 + TS + vue-router | ant-design-vue 4 | 商品管理：增删改查 / 库存 / 上下架 | 5174 | http://localhost:5174/ |
+| react-sub | React 19 + TSX + react-router-dom | antd 5 | 订单管理：列表 / 状态流转 / 新建 / 退款 | 5175 | http://localhost:5175/ |
 
 ## 快速启动
 
