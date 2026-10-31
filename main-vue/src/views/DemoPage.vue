@@ -13,9 +13,15 @@
         <a-typography-text code>cd main-vue && npm install && npm run dev</a-typography-text>
         基座 http://localhost:5173<br />
         <a-typography-text code>cd vue-sub && npm install && npm run dev</a-typography-text>
-        商品 http://localhost:5174/vue-sub/（可独立访问）<br />
+        商品 http://localhost:5174（可独立访问）<br />
         <a-typography-text code>cd react-sub && npm install && npm run dev</a-typography-text>
-        订单 http://localhost:5175/react-sub/（可独立访问）
+        订单 http://localhost:5175（可独立访问）
+      </a-typography-paragraph>
+      <a-typography-paragraph type="secondary" style="margin-top:8px;">
+        <b>线上地址：</b><br />
+        基座 https://qiankun-micro-frontend-sc7p.vercel.app<br />
+        商品 https://qiankun-micro-frontend-vue-sub.vercel.app<br />
+        订单 https://qiankun-micro-frontend-99g1.vercel.app
       </a-typography-paragraph>
       <p>
         演示账号：任意用户名 + 任意非空密码，角色可选 admin / operator / viewer。

@@ -5,11 +5,11 @@
 
 ## 项目组成
 
-| 应用 | 技术栈 | UI 框架 | 角色 | 端口 | 独立访问 |
-|---|---|---|---|---|---|
-| main-vue | Vue 3 + TS + vue-router | ant-design-vue 4 | 基座：统一登录 / RBAC / 侧边菜单 / 消息通知中心 / EventBus 中继 | 5173 | http://localhost:5173  |
-| vue-sub | Vue 3 + TS + vue-router | ant-design-vue 4 | 商品管理：增删改查 / 库存 / 上下架 | 5174 | http://localhost:5174/ |
-| react-sub | React 19 + TSX + react-router-dom | antd 5 | 订单管理：列表 / 状态流转 / 新建 / 退款 | 5175 | http://localhost:5175/ |
+| 应用 | 技术栈 | UI 框架 | 角色 | 端口 | 本地独立访问 | 线上地址 |
+|---|---|---|---|---|---|---|
+| main-vue | Vue 3 + TS + vue-router | ant-design-vue 4 | 基座：统一登录 / RBAC / 侧边菜单 / 消息通知中心 / EventBus 中继 | 5173 | http://localhost:5173 | https://qiankun-micro-frontend-sc7p.vercel.app |
+| vue-sub | Vue 3 + TS + vue-router | ant-design-vue 4 | 商品管理：增删改查 / 库存 / 上下架 | 5174 | http://localhost:5174 | https://qiankun-micro-frontend-vue-sub.vercel.app |
+| react-sub | React 19 + TSX + react-router-dom | antd 5 | 订单管理：列表 / 状态流转 / 新建 / 退款 | 5175 | http://localhost:5175 | https://qiankun-micro-frontend-99g1.vercel.app |
 
 ## 快速启动
 
@@ -22,6 +22,17 @@ cd react-sub && npm install && npm run dev    # 订单子应用
 
 访问 http://localhost:5173 ，任意用户名 + 任意非空密码登录，角色选 admin/operator/viewer。
 登录后进入「演示说明」页，包含全部联动场景的操作步骤。
+
+### 线上访问
+
+直接打开基座线上地址即可体验完整微前端联动（子应用由基座通过 qiankun 远程加载）：
+
+- 基座：https://qiankun-micro-frontend-sc7p.vercel.app
+- 子应用也可独立访问（仅展示自身页面，跨应用联动需在基座内演示）：
+  - vue-sub：https://qiankun-micro-frontend-vue-sub.vercel.app
+  - react-sub：https://qiankun-micro-frontend-99g1.vercel.app
+
+线上部署为三个独立的 Vercel 项目，基座通过 `main-vue/.env.prod` 中配置的子应用 entry 地址远程加载。
 
 ## 业务架构
 

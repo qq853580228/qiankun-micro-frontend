@@ -58,12 +58,16 @@ function renderFallback(appName: string, err: unknown): void {
   if (!container) return
   // 避免重复渲染
   if (container.querySelector('.micro-fallback')) return
+  const isDev = import.meta.env.DEV
+  const hint = isDev
+    ? '请确认对应 dev server 已启动（vue-sub:5174 / react-sub:5175）'
+    : '请检查子应用线上地址是否可访问（见 .env.prod 配置）'
   const div = document.createElement('div')
   div.className = 'micro-fallback'
   div.innerHTML = `
     <div style="padding:40px;text-align:center;border:1px dashed #d9d9d9;border-radius:6px;margin:16px;">
       <p style="font-size:16px;color:#c0392b;">子应用「${appName}」加载失败</p>
-      <p style="color:#888;font-size:13px;">请确认对应 dev server 已启动（vue-sub:5174 / react-sub:5175）</p>
+      <p style="color:#888;font-size:13px;">${hint}</p>
       <p style="color:#aaa;font-size:12px;word-break:break-all;">${String(err ?? '')}</p>
       <button onclick="location.reload()" style="margin-top:12px;padding:6px 16px;cursor:pointer;">刷新重试</button>
     </div>`
@@ -117,10 +121,13 @@ export function setupMicroApps(): void {
     const err = event instanceof ErrorEvent ? event.error ?? event.message : event
     const msg = String((err as Error)?.message ?? err ?? '')
     console.error('[qiankun] uncaught error:', err)
-    // entry fetch 失败时 qiankun 报错信息里带子应用 entry 地址，据此判断是哪个应用
-    const appName = msg.includes('5175') || msg.includes(SUB_APP_NAME_REACT)
-      ? SUB_APP_NAME_REACT
-      : SUB_APP_NAME_VUE
+    // entry fetch 失败时 qiankun 报错信息里带子应用 entry 地址或应用名，据此判断是哪个应用
+    // 兼容 dev（localhost 端口）与 prod（线上域名）两种 entry 形态
+    const reactEntry = import.meta.env.VITE_SUB_APP_NAME_REACT_ENTRY ?? ''
+    const vueEntry = import.meta.env.VITE_SUB_APP_NAME_VUE_ENTRY ?? ''
+    const isReact = msg.includes(SUB_APP_NAME_REACT) || (reactEntry && msg.includes(reactEntry))
+    const isVue = msg.includes(SUB_APP_NAME_VUE) || (vueEntry && msg.includes(vueEntry))
+    const appName = isReact ? SUB_APP_NAME_REACT : isVue ? SUB_APP_NAME_VUE : SUB_APP_NAME_VUE
     renderFallback(appName, msg)
     pushAlarm({
       level: 'error',
