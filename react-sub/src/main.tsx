@@ -8,7 +8,6 @@ import App from './App'
 import type { MicroAppProps } from './shared/contract'
 import { setupFromProps, teardown } from './shared/globalStore'
 import './index.css'
-import './public-path'
 
 let root: Root | null = null
 const disposers: Array<() => void> = []
