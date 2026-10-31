@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { userStore } from '../store/user'
-import MainLayout from '../layout/MainLayout.vue'
-import LoginPage from '../views/LoginPage.vue'
-import DemoPage from '../views/DemoPage.vue'
 import { SUB_APP_NAME_VUE_PATH, SUB_APP_NAME_REACT_PATH } from '../constant'
+
+const MainLayout = () => import('../layout/MainLayout.vue')
+const DemoPage = () => import('../views/DemoPage.vue')
+const LoginPage = () => import('../views/LoginPage.vue')
 
 /**
  * 子应用路由占位组件：本身不渲染任何内容，

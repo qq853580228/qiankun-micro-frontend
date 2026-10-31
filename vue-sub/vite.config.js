@@ -5,6 +5,7 @@ import qiankun from 'vite-plugin-qiankun'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
+  consy base = isProd ? 'https://qiankun-micro-frontend-vue-sub.vercel.app/' : '/'
   return {
     plugins: [
       vue(),
@@ -12,10 +13,11 @@ export default defineConfig(({ mode }) => {
         useDevMode: true,
       }),
     ],
-    // 生产环境用 '/'：每个子应用独立部署为 Vercel 项目，资产从根路径提供
-    // qiankun 会以 entry URL 为基准解析子应用 HTML 中的资源路径，所以 '/' 即可
-    // 开发环境保留 '/vue-sub' 以兼容基座 activeRule
-    // base: isProd ? '/' : '/vue-sub',
+    // 生产环境 base 必须是子应用的完整线上 URL：
+    // vite-plugin-qiankun 生成的产物用 import('/assets/xxx.js') 动态加载入口脚本，
+    // 浏览器会把绝对路径 '/assets/...' 解析到当前页面（主应用）的域名，导致 404 回退为 index.html（MIME text/html 报错）。
+    // 设为完整 URL 后，import 路径指向子应用自己的域名，qiankun 内加载才能正确取到 JS。
+    base,
     server: {
       port: 5174,
       cors: true,

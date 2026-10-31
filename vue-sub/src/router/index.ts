@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import ProductList from '../views/ProductList.vue'
-import ProductEdit from '../views/ProductEdit.vue'
-import NotFound from '../views/NotFound.vue'
 import { qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
+
+const ProductList = () => import('../views/ProductList.vue')
+const ProductEdit = () => import('../views/ProductEdit.vue')
+const NotFound = () => import('../views/NotFound.vue')
+
+
 
 /**
  * 【面试点】子应用路由 base 必须与基座 activeRule 前缀一致（'/vue-sub'），
