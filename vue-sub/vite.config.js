@@ -5,7 +5,7 @@ import qiankun from 'vite-plugin-qiankun'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
-  consy base = isProd ? 'https://qiankun-micro-frontend-vue-sub.vercel.app/' : '/'
+  const base = isProd ? 'https://qiankun-micro-frontend-vue-sub.vercel.app/' : '/'
   return {
     plugins: [
       vue(),
